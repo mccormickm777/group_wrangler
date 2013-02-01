@@ -1,0 +1,2 @@
+module UserAttributeStringRelationshipsHelper
+end

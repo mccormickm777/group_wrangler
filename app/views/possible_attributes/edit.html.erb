@@ -1,0 +1,19 @@
+<% provide(:title, "Update attribute") %> 
+<h1>Update attribute</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+  <%= form_for(@possible_attribute) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= f.label :attribute_type %>
+      <%= f.collection_select :attribute_type, PossibleAttribute::POSSIBLE_VALUES, :to_s, :to_s%>
+
+      <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+    <% end %>
+    <%= link_to "Back to Attributes", possible_attributes_path %>
+  </div>
+</div>

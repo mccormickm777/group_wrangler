@@ -1,0 +1,31 @@
+<% provide(:title, @title) %> 
+<h1><%= @title %></h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@group_attribute_string_relationship) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.hidden_field :possible_attribute_id, value: @possible_attribute.id %>
+
+      <%= f.hidden_field :group_id, value: @group.id %>
+
+      <%= f.label :string_operator %>
+      <%= f.collection_select :string_operator, GroupAttributeStringRelationship::POSSIBLE_VALUES, :to_s, :to_s%>
+
+      <%= f.label :value %>
+      <% if ( @possible_attribute.attribute_type == 'Text' && @possible_attribute.possible_attribute_values.any? ) %>
+        <%  possible_value_names = [] %>
+        <% for possible_value in @possible_attribute.possible_attribute_values %>
+          <% possible_value_names << possible_value.name %>
+        <% end %>
+
+        <%= f.collection_select :value, possible_value_names, :to_s, :to_s%>
+      <% else %>
+        <%= f.text_field :value %>
+      <% end %>
+      <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+    <% end %>
+    <%= link_to "Back to Group Rules", rules_group_path(@group) %>
+  </div>
+</div>

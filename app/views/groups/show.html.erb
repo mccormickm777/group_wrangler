@@ -1,0 +1,18 @@
+<% provide(:title, @group.name) %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1>
+        <%= gravatar_for current_user %>
+        <%= @group.name %>
+      </h1>
+      <%= link_to "rules", rules_group_path(@group) %>
+      <br />
+      <%= link_to "users", users_group_path(@group) %>
+    </section>
+    <section>
+    </section>
+  </aside>
+  <div class="span8">
+  </div>
+</div>

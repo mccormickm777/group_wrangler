@@ -1,0 +1,38 @@
+<div class="row">
+    <hr />
+  <div class="span2">
+    <%= possible_attribute.name %>
+  </div>
+  <div class="span2">
+    <%= possible_attribute.attribute_type %>
+  </div>
+  <div class="span3">
+    <% if ( possible_attribute.attribute_type == 'Text' && possible_attribute.possible_attribute_values.any? ) %>
+      <% possible_attribute.possible_attribute_values.each_with_index do |val, index| %>
+        <% if (index == 0) %>
+          <%= val.name %>
+        <% else %>
+          <%=", #{val.name}" %>
+        <% end %>
+      <% end %>
+    <% else %>
+      Any <%= possible_attribute.attribute_type %>
+    <% end %>
+  </div>
+  <% if current_user.admin? %>
+    <div class="span1">
+      <%= link_to "update", edit_possible_attribute_path(possible_attribute) %>
+    </div>
+    <div class="span1">
+      <%= link_to "delete", possible_attribute, method: :delete,
+                                    data: { confirm: "You sure?" } %>
+    </div>
+    <div class="span3">
+      <% if (possible_attribute.attribute_type == 'Text') %>
+        <a href="<%= possible_values_possible_attribute_path(possible_attribute) %>">set possible values</a>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="span5"></div>
+  <% end %>
+</div>

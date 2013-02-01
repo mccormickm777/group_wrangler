@@ -1,0 +1,23 @@
+<div class="row">
+  <hr />
+  <div class="span2">
+    <%= val.name %>
+  </div>
+  <div class="span2">
+    <%= val.attribute_type %>
+  </div>
+  <div class="span2">
+    <b>Not set</b>
+  </div>
+  <div class="span3">
+  	<b>Not set</b>
+  </div>
+  <% if current_user.admin? %>
+    <div class="span1">
+      <%= link_to "set", new_group_attribute_string_relationship_path(possible_attribute: val, group: @group) %>
+    </div>
+    <div class="span2"></div>
+  <% else %>
+    <div class="span3"></div>
+  <% end %>
+</div>

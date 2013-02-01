@@ -1,0 +1,28 @@
+<% provide(:title, @title) %> 
+<h1><%= @title %></h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@user_attribute_string_relationship) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.hidden_field :possible_attribute_id, value: @possible_attribute.id %>
+
+      <%= f.hidden_field :user_id, value: @user.id %>
+
+      <%= f.label :value %>
+      <% if ( @possible_attribute.attribute_type == 'Text' && @possible_attribute.possible_attribute_values.any? ) %>
+        <%  possible_value_names = [] %>
+        <% for possible_value in @possible_attribute.possible_attribute_values %>
+          <% possible_value_names << possible_value.name %>
+        <% end %>
+
+        <%= f.collection_select :value, possible_value_names, :to_s, :to_s%>
+      <% else %>
+        <%= f.text_field :value %>
+      <% end %>
+      <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+    <% end %>
+    <%= link_to "Back to User Properties", properties_user_path(@user) %>
+  </div>
+</div>

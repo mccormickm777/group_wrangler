@@ -1,0 +1,5 @@
+<li id="<%= value.id %>">
+  <%= value.name %>
+  <%= link_to "delete", value, method: :delete,
+                                   data: { confirm: "You sure?" } %>
+</li>

@@ -1,0 +1,20 @@
+<% provide(:title, @title) %> 
+<h1>Possible <%= @title %> Values</h1>
+
+<% if @possible_attribute_values %>
+  <ol class="microposts">
+    <%= render partial: 'possible_attributes/possible_value', collection: @possible_attribute_values, :as => :value %>
+    <%= form_for(@possible_attribute.possible_attribute_values.build(possible_attribute_id: @possible_attribute.id)) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= f.hidden_field :possible_attribute_id %>
+
+      <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </ol>
+<% end %>
+
+<%= link_to "Back to Possible Attributes", possible_attributes_path %>

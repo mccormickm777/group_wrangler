@@ -1,0 +1,14 @@
+<% provide(:title, @title) %>
+<h1><%= @title %></h1>
+
+<%= will_paginate @groups %>
+
+<ul class="users">
+  <%= render @groups %>
+</ul>
+
+<%= will_paginate @groups %>
+
+<% if current_user.admin? && @title == "All groups" %>
+  <%= link_to "Create new group", new_group_path %>
+<% end %>

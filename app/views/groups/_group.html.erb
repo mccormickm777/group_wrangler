@@ -1,0 +1,8 @@
+<li>
+  <%= gravatar_for current_user, size: 52 %>
+  <%= link_to group.name, group %>
+  <% if current_user.admin? %>
+    | <%= link_to "delete", group, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+  <% end %>
+</li>

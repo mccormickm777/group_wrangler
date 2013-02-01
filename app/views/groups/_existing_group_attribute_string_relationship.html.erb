@@ -1,0 +1,27 @@
+<div class="row">
+  <hr />
+  <div class="span2">
+    <%= val.name %>
+  </div>
+  <div class="span2">
+    <%= val.attribute_type %>
+  </div>
+  <div class="span2">
+    <%= group_attr_str_rel.string_operator %>
+  </div>
+  <div class="span2">
+  	<%= group_attr_str_rel.value %>
+  </div>
+  <% if current_user.admin? %>
+    <div class="span1">
+      <%= link_to "update", edit_group_attribute_string_relationship_path(group_attr_str_rel) %>
+    </div>
+    <div class="span1">
+      <%= link_to "clear", group_attr_str_rel, method: :delete,
+                                    data: { confirm: "You sure?" } %>
+    </div>
+    <div class="span2"></div>
+  <% else %>
+    <div class="span4"></div>
+  <% end %>
+</div>

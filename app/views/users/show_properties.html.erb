@@ -1,0 +1,23 @@
+<% provide(:title, @title) %>
+<h1><%= @title %></h1>
+
+<div class="row">
+  <div class="span2"><h4>Name</h4></div>
+  <div class="span2"><h4>Type</h4></div>
+  <div class="span3"><h4>Value</h4></div>
+  <div class="span5"></div>
+</div>
+
+<div class="row">
+  <% @possible_attributes.each do |val| %>
+    <% user_attr_str_rel = @user_attribute_string_relationships.find_by_possible_attribute_id(val.id) %>
+    <% if (user_attr_str_rel) %>
+      <%= render 'existing_user_attribute_string_relationship', val: val, user_attr_str_rel: user_attr_str_rel %>
+    <% else %>
+      <%= render 'new_user_attribute_string_relationship', val: val %>
+    <% end %>
+  <% end %>
+</div>
+
+<hr />
+
